@@ -34,7 +34,7 @@ ostream& operator<< (ostream& out, LongInteger& longN)
 	longN.print();
 
 	out << longN.longNumberInString;
-
+	
 	return out;
 }
 
@@ -864,8 +864,8 @@ LongInteger operator/ (LongInteger& firstNumber, int& scndNumber)
 {
 	LongInteger secondNumber, thirdNumber;
 	secondNumber.scan_int(scndNumber);
-
-	thirdNumber.division(firstNumber, secondNumber);
+	
+	thirdNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
 
 	if ((firstNumber.mark == secondNumber.mark)) thirdNumber.mark = true;
 	else thirdNumber.mark = false;
@@ -874,7 +874,7 @@ LongInteger operator/ (LongInteger& firstNumber, int& scndNumber)
 	secondNumber.mark = true;
 
 	if (firstNumber < secondNumber) thirdNumber.scan_int(0);
-
+	
 	return thirdNumber;
 }
 
@@ -899,14 +899,14 @@ LongInteger operator/= (LongInteger& firstNumber, LongInteger& secondNumber)
 
 LongInteger operator/= (LongInteger& firstNumber, int& scndNumber)
 {
-	LongInteger secondNumber;
+	LongInteger secondNumber, thirdNumber;
 	secondNumber.scan_int(scndNumber);
 
-	firstNumber.division(firstNumber, secondNumber);
+	firstNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
 
 	if ((firstNumber.mark == secondNumber.mark)) firstNumber.mark = true;
-	else firstNumber.mark = false;
-	
+	else thirdNumber.mark = false;
+
 	firstNumber.mark = true;
 	secondNumber.mark = true;
 
@@ -932,8 +932,7 @@ int LongInteger::translationToInt(string numberInString)
 
 string LongInteger::translationToString(int numberInInt)
 {
-	string numberInString;
-	numberInString.clear();
+	string numberInString = "";
 
 	while (numberInInt)
 	{
@@ -1009,6 +1008,7 @@ void LongInteger::print()
 		longNumberInString += temp;
 	}
 
+	if (longNumberInString.empty()) longNumberInString = "0";
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -1078,8 +1078,9 @@ LongInteger LongInteger::divisionLongOnShort(LongInteger firstNumber, int second
 	while ((int)firstNumber.longNumber.size() > 1 && !firstNumber.longNumber.back())
 		firstNumber.longNumber.pop_back();
 
-	*this = firstNumber;
+	if (firstNumber.longNumber.empty()) firstNumber.longNumber.push_back(0);
 
+	*this = firstNumber;
 	return *this;
 }
 
