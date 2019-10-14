@@ -851,11 +851,7 @@ LongInteger operator/ (LongInteger& firstNumber, LongInteger& secondNumber)
 	firstNumber.mark = true;
 	secondNumber.mark = true;
 
-	if (firstNumber < secondNumber)
-	{
-		firstNumber.scan_int(0);
-		return firstNumber;
-	}
+	if (firstNumber < secondNumber) thirdNumber.scan_int(0);
 
 	return thirdNumber;
 }
@@ -893,6 +889,7 @@ LongInteger operator/= (LongInteger& firstNumber, LongInteger& secondNumber)
 		firstNumber.division(firstNumber, secondNumber);
 		firstNumber.mark = false;
 	}
+
 
 	return firstNumber;
 }

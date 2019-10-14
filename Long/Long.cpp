@@ -11,7 +11,7 @@ int main()
 	while (true)
 	{
 		LongInteger firstNumber;
-		int secondNumber;
+		LongInteger secondNumber;
 
 		cin >> firstNumber >> secondNumber;
 
