@@ -1117,7 +1117,7 @@ LongInteger LongInteger::division(LongInteger firstNumber, LongInteger secondNum
 	secondNumber.mark = true;
 
 	LongInteger left, right = firstNumber;
-	left.scan_int((int)0);
+	//left.scan_int((int)0);
 	LongInteger  tempDiv = right - left;
 
 	int one = 1, two = 2;
