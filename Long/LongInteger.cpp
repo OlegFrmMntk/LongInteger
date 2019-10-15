@@ -848,10 +848,15 @@ LongInteger operator/ (LongInteger& firstNumber, LongInteger& secondNumber)
 		thirdNumber.mark = false;
 	}
 
+	bool tempF = firstNumber.mark, tempS = secondNumber.mark;
+
 	firstNumber.mark = true;
 	secondNumber.mark = true;
 
 	if (firstNumber < secondNumber) thirdNumber.scan_int(0);
+
+	firstNumber.mark = tempF;
+	secondNumber.mark = tempS;
 
 	return thirdNumber;
 }
@@ -859,18 +864,26 @@ LongInteger operator/ (LongInteger& firstNumber, LongInteger& secondNumber)
 LongInteger operator/ (LongInteger& firstNumber, int& scndNumber)
 {
 	LongInteger secondNumber, thirdNumber;
+	secondNumber.scan_int(abs(scndNumber));
+	
+	if (abs(scndNumber) > 1000000000) thirdNumber = firstNumber / secondNumber;
+	else thirdNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
+	
 	secondNumber.scan_int(scndNumber);
 	
-	thirdNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
-
 	if ((firstNumber.mark == secondNumber.mark)) thirdNumber.mark = true;
 	else thirdNumber.mark = false;
+	
+	bool tempF = firstNumber.mark, tempS = secondNumber.mark;
 
 	firstNumber.mark = true;
 	secondNumber.mark = true;
 
 	if (firstNumber < secondNumber) thirdNumber.scan_int(0);
-	
+
+	firstNumber.mark = tempF;
+	secondNumber.mark = tempS;
+
 	return thirdNumber;
 }
 
@@ -881,33 +894,50 @@ LongInteger operator/= (LongInteger& firstNumber, LongInteger& secondNumber)
 
 	if (firstNumber.mark == secondNumber.mark)
 	{
-		firstNumber.division(firstNumber, secondNumber);
+		firstNumber = firstNumber.division(firstNumber, secondNumber);
 		firstNumber.mark = true;
 	}
 	else
 	{
-		firstNumber.division(firstNumber, secondNumber);
+		firstNumber = firstNumber.division(firstNumber, secondNumber);
 		firstNumber.mark = false;
 	}
 
+	bool tempF = firstNumber.mark, tempS = secondNumber.mark;
+
+	firstNumber.mark = true;
+	secondNumber.mark = true;
+
+	if (firstNumber < secondNumber) firstNumber.scan_int(0);
+
+	firstNumber.mark = tempF;
+	secondNumber.mark = tempS;
 
 	return firstNumber;
 }
 
 LongInteger operator/= (LongInteger& firstNumber, int& scndNumber)
 {
-	LongInteger secondNumber, thirdNumber;
+	LongInteger secondNumber;
+	secondNumber.scan_int(abs(scndNumber));
+
+	if (abs(scndNumber) > 1000000000) firstNumber = firstNumber / secondNumber;
+	else firstNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
+
 	secondNumber.scan_int(scndNumber);
 
-	firstNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
-
 	if ((firstNumber.mark == secondNumber.mark)) firstNumber.mark = true;
-	else thirdNumber.mark = false;
+	else firstNumber.mark = false;
+
+	bool tempF = firstNumber.mark, tempS = secondNumber.mark;
 
 	firstNumber.mark = true;
 	secondNumber.mark = true;
 
 	if (firstNumber < secondNumber) firstNumber.scan_int(0);
+
+	firstNumber.mark = tempF;
+	secondNumber.mark = tempS;
 
 	return firstNumber;
 }

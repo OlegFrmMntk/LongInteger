@@ -11,13 +11,13 @@ int main()
 	while (true)
 	{
 		LongInteger firstNumber;
-		LongInteger secondNumber;
 
+		LongInteger secondNumber;
 		cin >> firstNumber >> secondNumber;
 
-		LongInteger third = firstNumber / secondNumber;
+	    firstNumber /= secondNumber;
 
-		cout << third << endl;
+		cout << firstNumber << endl;
 	}
 
 	return 0;
