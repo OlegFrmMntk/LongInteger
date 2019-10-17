@@ -13,7 +13,7 @@ typedef vector <int> longNumb;
 LongInteger::LongInteger()
 {
 	longNumber.clear();
-	longNumberInString = "0";
+//	longNumberInString = "0";
 	scan_int(0);
 	mark = true;
 }
@@ -994,14 +994,16 @@ void LongInteger::scan()
 
 void LongInteger::scan_int(int numberInInt)
 {
-	longNumberInString = "";
-
 	if (numberInInt < 0)
 	{
 		mark = false;
 		longNumberInString = "-";
 	}
-	else mark = true;
+	else
+	{
+		longNumberInString = "";
+		mark = true;
+	}
 
 	longNumberInString += translationToString(abs(numberInInt));
 
