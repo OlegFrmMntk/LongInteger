@@ -16,6 +16,18 @@ class LongInteger
 		friend istream& operator>> (istream &in, LongInteger &longN);
 		friend ostream& operator<< (ostream &out, LongInteger &longN);
 
+		operator int()
+		{
+			print();
+
+			if (longNumberInString[0] == '-')
+			{
+				int length = longNumberInString.size();
+				return -1 * translationToInt(longNumberInString.substr(1, length - 1));
+			}
+			else return translationToInt(longNumberInString);
+		}
+
 		friend bool operator > (LongInteger& firstNumber, int& scndNumber);
 		friend bool operator < (LongInteger& firstNumber, int& scndNumber);
 		friend bool operator >= (LongInteger& firstNumber, int& scndNumber);

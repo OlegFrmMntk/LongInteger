@@ -51,9 +51,9 @@ int main()
 	cout << "firstNumber = " << firstNumber << endl;
 	cout << "secondNumber = " << secondNumber << endl;
 	cout << "temp = " << temp << endl;
-
+	
 	while (true)
-	{
+	{	
 		int k;
 		
 		inf();
@@ -200,5 +200,6 @@ int main()
 				break;
 		}
 	}
+
 	return 0;
 }
