@@ -13,7 +13,6 @@ typedef vector <int> longNumb;
 LongInteger::LongInteger()
 {
 	longNumber.clear();
-//	longNumberInString = "0";
 	scan_int(0);
 	mark = true;
 }
@@ -219,7 +218,76 @@ bool operator != (int& frstNumber, LongInteger& secondNumber)
 	if (temp != 3) return true;
 	else return false;
 }
+///////////////////////////////////////////////////////////////////////////////////
 
+LongInteger operator++(LongInteger& firstNumber)
+{
+	LongInteger secondNumber;
+	secondNumber.scan_int(1);
+
+	if (firstNumber.mark == true)
+	{
+		firstNumber.longNumber = firstNumber.sum(firstNumber.longNumber, secondNumber.longNumber);
+	}
+	else
+	{
+		firstNumber.longNumber = firstNumber.diff(firstNumber.longNumber, secondNumber.longNumber);
+	}
+
+	return firstNumber;
+}
+
+LongInteger operator--(LongInteger& firstNumber)
+{
+	LongInteger secondNumber;
+	secondNumber.scan_int(1);
+
+	if (firstNumber.mark == true)
+	{
+		firstNumber.longNumber = firstNumber.diff(firstNumber.longNumber, secondNumber.longNumber);
+	}
+	else
+	{
+		firstNumber.longNumber = firstNumber.sum(firstNumber.longNumber, secondNumber.longNumber);
+	}
+
+	return firstNumber;
+}
+
+const LongInteger operator++(LongInteger& firstNumber, int)
+{
+	LongInteger x(firstNumber), secondNumber;
+	
+	secondNumber.scan_int(1);
+	
+	if (firstNumber.mark == true)
+	{
+		firstNumber.longNumber = firstNumber.sum(firstNumber.longNumber, secondNumber.longNumber);
+	}
+	else
+	{
+		firstNumber.longNumber = firstNumber.diff(firstNumber.longNumber, secondNumber.longNumber);
+	}
+
+	return x;
+}
+const LongInteger operator--(LongInteger& firstNumber, int)
+{
+	LongInteger x(firstNumber);
+	LongInteger secondNumber;
+	secondNumber.scan_int(1);
+	if (firstNumber.mark == true)
+	{
+		firstNumber.longNumber = firstNumber.diff(firstNumber.longNumber, secondNumber.longNumber);
+	}
+	else
+	{
+		firstNumber.longNumber = firstNumber.sum(firstNumber.longNumber, secondNumber.longNumber);
+	}
+	return firstNumber;
+
+
+}
 ///////////////////////////////////////////////////////////////////////////////////
 
 LongInteger operator+(int& frstNumber, LongInteger& secondNumber)
@@ -867,7 +935,7 @@ LongInteger operator/ (LongInteger& firstNumber, int& scndNumber)
 	secondNumber.scan_int(abs(scndNumber));
 	
 	if (abs(scndNumber) > 1000000000) thirdNumber = firstNumber / secondNumber;
-	else thirdNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
+	else thirdNumber = thirdNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
 	
 	secondNumber.scan_int(scndNumber);
 	
@@ -922,7 +990,7 @@ LongInteger operator/= (LongInteger& firstNumber, int& scndNumber)
 	secondNumber.scan_int(abs(scndNumber));
 
 	if (abs(scndNumber) > 1000000000) firstNumber = firstNumber / secondNumber;
-	else firstNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
+	else firstNumber = firstNumber.divisionLongOnShort(firstNumber, abs(scndNumber));
 
 	secondNumber.scan_int(scndNumber);
 
@@ -1119,7 +1187,6 @@ LongInteger LongInteger::division(LongInteger firstNumber, LongInteger secondNum
 	secondNumber.mark = true;
 
 	LongInteger left, right = firstNumber;
-	//left.scan_int((int)0);
 	LongInteger  tempDiv = right - left;
 
 	int one = 1, two = 2;

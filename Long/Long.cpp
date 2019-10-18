@@ -36,6 +36,8 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
+	LongInteger x;
+
 	LongInteger firstNumber, secondNumber, thirdNumber;
 	int temp;
 
@@ -201,5 +203,5 @@ int main()
 		}
 	}
 
-	return 0;
+	return 0; 
 }

@@ -49,6 +49,12 @@ class LongInteger
 		friend bool operator == (LongInteger& firstNumber, LongInteger& secondNumber);
 		friend bool operator != (LongInteger& firstNumber, LongInteger& secondNumber);
 
+		friend LongInteger operator++(LongInteger& firstNumber);
+		friend LongInteger operator--(LongInteger& firstNumber);
+
+		friend const LongInteger operator++(LongInteger& i, int);
+		friend const LongInteger operator--(LongInteger& firstNumber, int);
+
 		friend LongInteger operator + (int& frstNumber, LongInteger& secondNumber);
 		friend LongInteger operator + (LongInteger& firstNumber, int& secondNumber);
 		friend LongInteger operator + (LongInteger& firstNumber, LongInteger& secondNumber);
