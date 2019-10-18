@@ -271,6 +271,7 @@ const LongInteger operator++(LongInteger& firstNumber, int)
 
 	return x;
 }
+
 const LongInteger operator--(LongInteger& firstNumber, int)
 {
 	LongInteger x(firstNumber);
@@ -288,6 +289,7 @@ const LongInteger operator--(LongInteger& firstNumber, int)
 
 
 }
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 LongInteger operator+(int& frstNumber, LongInteger& secondNumber)

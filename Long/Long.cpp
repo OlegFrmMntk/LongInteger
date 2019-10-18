@@ -50,7 +50,7 @@ int main()
 	cout << "¬ведите целое число" << endl;
 	cin >> temp;
 
-	cout << "firstNumber = " << firstNumber << endl;
+	cout << "\nfirstNumber = " << firstNumber << endl;
 	cout << "secondNumber = " << secondNumber << endl;
 	cout << "temp = " << temp << endl;
 	
